@@ -1,13 +1,10 @@
 window.onload = () => {
     init();
-    
 }
 
 const init = async () => {
-    const pokemons = await getAllPokemons();
-    const finalPokemons = await mappedPokemons(pokemons);
-    console.log(finalPokemons)
-    paintPokemons(finalPokemons);
+    getAllMapped();
+    getFiltered();
 }
 
 const getPokemon = async (id) => {
@@ -24,18 +21,15 @@ const getAllPokemons = async () =>{
     return allPokemons;
 }
 
-const mappedPokemons = (pokemons) =>{
-    const mapped = pokemons.map (pokemon => {
+const getAllMapped = async () => {
+    const pokemons = await getAllPokemons ();
+    const mappedPokemons = pokemons.map (pokemon => {
         return {
             name: pokemon.name,
             image: pokemon.sprites.front_shiny
         }
     })
-    return mapped;
-}
-    
-const paintPokemons = async (pokemons) => {
-    pokemons.forEach(pokemon => {
+    mappedPokemons.forEach(pokemon => {
         const pokemonsList = document.querySelector(".pokemons")
         const pokemonCard = document.createElement('li');
         const pokemonImg = document.createElement('img');
@@ -46,4 +40,33 @@ const paintPokemons = async (pokemons) => {
         pokemonCard.appendChild(pokemonImg);
         pokemonCard.appendChild(pokemonName)   
     });
+}
+
+
+const getFiltered = async () => {
+    const pokemons = await getAllPokemons();
+    const inputFilter = document.querySelector('#filterInput')
+    const filteredPokemons = pokemons.filter(pokemon => (pokemon.name == inputFilter.value));
+    filteredPokemons.forEach(pokemon => {
+        const filteredDiv = document.createElement('div');
+        const pokemonsList = document.querySelector(".filteredPokemons")
+        const pokemonCard = document.createElement('li');
+        const pokemonImg = document.createElement('img');
+        const pokemonName = document.createElement('h4')
+        pokemonImg.setAttribute("src",pokemon.sprites.front_shiny);
+        pokemonName.textContent = pokemon.name;
+        pokemonsList.appendChild(pokemonCard);
+        pokemonCard.appendChild(pokemonImg);
+        pokemonCard.appendChild(pokemonName)   
+    });
+}
+
+function removeAllChilds(parent) {
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
+}
+const resetFilter = () => {
+    const filteredPokemons = document.querySelector(".filteredPokemons");
+    removeAllChilds(filteredPokemons);
 }
