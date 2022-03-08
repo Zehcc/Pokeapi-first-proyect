@@ -20,13 +20,49 @@ li {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 2px solid rgb(0, 0, 0);
-    margin: 2px;
-    width: 200px;
-    background-color: rgb(0, 255, 179);
+    border: 2px solid yellow;
+    margin: 5px;
+    width: 250px;
+    height: 30px;
+    background-color:black;
+    color: yellow;
 }
+.pokemonCard {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid yellow;
+    margin: 5px;
+    width: 250px;
+    height: 350px;
+    background-color:black;
+    color: yellow;
+}
+
+.filteredCard {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid yellow;
+    margin: 5px;
+    width: 250px;
+    height: 350px;
+    background-color:black;
+    color: yellow;
+}
+
 
 img {
     width: 100%;
-    background-color: rgb(136, 140, 194);
+    height: 50%;
+    background-color:black
+    
+}
+
+body {
+    background-color: black;
 }

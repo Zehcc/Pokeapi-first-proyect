@@ -4,7 +4,6 @@ window.onload = () => {
 
 const init = async () => {
     getAllMapped();
-    getFiltered();
 }
 
 const getPokemon = async (id) => {
@@ -26,12 +25,13 @@ const getAllMapped = async () => {
     const mappedPokemons = pokemons.map (pokemon => {
         return {
             name: pokemon.name,
-            image: pokemon.sprites.front_shiny
+            image: pokemon.sprites.other.dream_world.front_default
         }
     })
     mappedPokemons.forEach(pokemon => {
         const pokemonsList = document.querySelector(".pokemons")
         const pokemonCard = document.createElement('li');
+        pokemonCard.className = "pokemonCard"
         const pokemonImg = document.createElement('img');
         const pokemonName = document.createElement('h4')
         pokemonImg.setAttribute("src",pokemon.image);
@@ -48,16 +48,18 @@ const getFiltered = async () => {
     const inputFilter = document.querySelector('#filterInput')
     const filteredPokemons = pokemons.filter(pokemon => (pokemon.name == inputFilter.value));
     filteredPokemons.forEach(pokemon => {
-        const filteredDiv = document.createElement('div');
-        const pokemonsList = document.querySelector(".filteredPokemons")
+        const filteredList = document.querySelector(".filteredPokemons")
         const pokemonCard = document.createElement('li');
+        pokemonCard.className = "filteredCard"
         const pokemonImg = document.createElement('img');
         const pokemonName = document.createElement('h4')
         pokemonImg.setAttribute("src",pokemon.sprites.front_shiny);
         pokemonName.textContent = pokemon.name;
-        pokemonsList.appendChild(pokemonCard);
+        filteredList.appendChild(pokemonCard);
         pokemonCard.appendChild(pokemonImg);
-        pokemonCard.appendChild(pokemonName)   
+        pokemonCard.appendChild(pokemonName);
+        const pokemonsList = document.querySelector(".pokemons");
+        removeAllChilds(pokemonsList);       
     });
 }
 
@@ -69,4 +71,5 @@ function removeAllChilds(parent) {
 const resetFilter = () => {
     const filteredPokemons = document.querySelector(".filteredPokemons");
     removeAllChilds(filteredPokemons);
+    getAllMapped();
 }
