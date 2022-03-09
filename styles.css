@@ -1,3 +1,7 @@
+body {
+    margin: 0px;
+    background-color: black;
+}
 .navigation {
     list-style: none;
     margin: 0%;
@@ -5,6 +9,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    margin-top: 50px;
 }
 
 ul {
@@ -12,6 +17,7 @@ ul {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    margin: 0px;
 }
 
 li {
@@ -47,7 +53,7 @@ li {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 2px solid yellow;
+    border: 2px solid blue;
     margin: 5px;
     width: 250px;
     height: 350px;
@@ -65,4 +71,67 @@ img {
 
 body {
     background-color: black;
+}
+
+.mappedCardP {
+    margin: 2px;
+}
+
+.pokemonName {
+    margin: 20px 0 5px 0;
+}
+
+.filterContent {
+    display: flex;
+    justify-content: center;
+    margin: 30px 0;
+    height: 50px;
+}
+
+.filterInput {
+    width: 400px;
+    background-color: black;
+    align-items: center;
+    border: 2px solid yellow;
+    padding-left: 5px;
+    color: yellow;
+    margin-right: 10px;
+}
+
+.filterInput:focus {
+    border: 5px solid blue
+}
+
+::placeholder {
+    color: yellow;
+    font-size: 11px;
+    text-transform: uppercase;
+}
+
+.pokeapiDiv {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 300px;
+}
+.pokeapiIMG {
+    width: 600px;
+    height: 400px;
+}
+
+button {
+    background-color: yellow;
+    margin-right: 10px;
+    border-radius: 20px;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: blue;
+    color: yellow;
 }

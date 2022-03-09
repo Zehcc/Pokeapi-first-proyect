@@ -11,6 +11,7 @@ const getPokemon = async (id) => {
     const resultjs = await result.json();
     return resultjs
 }
+
 const getAllPokemons = async () =>{
     const allPokemons = [];
     for (i=1; i<=151; i++) {
@@ -24,50 +25,43 @@ const getAllMapped = async () => {
     const pokemons = await getAllPokemons ();
     const mappedPokemons = pokemons.map (pokemon => {
         return {
-            name: pokemon.name,
-            image: pokemon.sprites.other.dream_world.front_default
+            name: pokemon.name.toUpperCase(),
+            image: pokemon.sprites.other.dream_world.front_default,
+            height: pokemon.height / 10,
+            weight: pokemon.weight / 10,
+            number: pokemon.order
         }
     })
     mappedPokemons.forEach(pokemon => {
         const pokemonsList = document.querySelector(".pokemons")
         const pokemonCard = document.createElement('li');
-        pokemonCard.className = "pokemonCard"
-        const pokemonImg = document.createElement('img');
-        const pokemonName = document.createElement('h4')
-        pokemonImg.setAttribute("src",pokemon.image);
-        pokemonName.textContent = pokemon.name;
+        pokemonCard.className = "pokemonCard";
+        pokemonCard.innerHTML = `<img src="${pokemon.image}" alt="${pokemon.name}"><h2 class="pokemonName">${pokemon.name}</h2><p class="mappedCardP">Altura: ${pokemon.height}m</p><p class="mappedCardP">Peso: ${pokemon.weight}kg</p><p class="mappedCardP"># ${pokemon.number}</p>`
         pokemonsList.appendChild(pokemonCard);
-        pokemonCard.appendChild(pokemonImg);
-        pokemonCard.appendChild(pokemonName)   
     });
 }
-
 
 const getFiltered = async () => {
     const pokemons = await getAllPokemons();
     const inputFilter = document.querySelector('#filterInput')
-    const filteredPokemons = pokemons.filter(pokemon => (pokemon.name == inputFilter.value));
+    const filteredPokemons = pokemons.filter(pokemon => (pokemon.name.toUpperCase() == inputFilter.value.toUpperCase()));
     filteredPokemons.forEach(pokemon => {
         const filteredList = document.querySelector(".filteredPokemons")
         const pokemonCard = document.createElement('li');
         pokemonCard.className = "filteredCard"
-        const pokemonImg = document.createElement('img');
-        const pokemonName = document.createElement('h4')
-        pokemonImg.setAttribute("src",pokemon.sprites.front_shiny);
-        pokemonName.textContent = pokemon.name;
+        pokemonCard.innerHTML = `<img src="${pokemon.sprites.other.dream_world.front_default}" alt="${pokemon.name}"><h2>${pokemon.name}</h2>`
         filteredList.appendChild(pokemonCard);
-        pokemonCard.appendChild(pokemonImg);
-        pokemonCard.appendChild(pokemonName);
         const pokemonsList = document.querySelector(".pokemons");
         removeAllChilds(pokemonsList);       
     });
 }
 
-function removeAllChilds(parent) {
+const removeAllChilds = (parent) => {
     while (parent.firstChild) {
         parent.removeChild(parent.firstChild);
     }
 }
+
 const resetFilter = () => {
     const filteredPokemons = document.querySelector(".filteredPokemons");
     removeAllChilds(filteredPokemons);
