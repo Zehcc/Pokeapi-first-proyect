@@ -12,29 +12,14 @@
     <header class="header">
         <nav>
             <ul class="navigation">
-                <li>Pokedex</li>
-                <li>Laboratorio</li>
-                <li>Minijuego</li>
+                <button onclick="goPokedex()" class="navigation_button">Pokedex</button>
+                <button onclick="goLaboratorio()" class="navigation_button">Laboratorio</button>
+                <button class="navigation_button">Minijuego</button>
             </ul>
         </nav>
     </header>
-    <main>
-        <div class="pokeapiDiv"><img class ="pokeapiIMG" src="https://avatars.githubusercontent.com/u/64151210?v=4" alt="letras pokemon"></div>
-        <div class="filterContent">
-            <input class ="filterInput" id="filterInput" type="text" placeholder="Escribe aquí el nombre de un pokemon para saber mas sobre el">
-            <button  onclick="getFiltered()">Filtrar</button>
-            <button  onclick="resetFilter()">Limpiar filtro</button>
-        </div>
-        <div>
-            <ul class="filteredPokemons">
-
-            </ul>
-        </div>
-        <div>
-            <ul class="pokemons">
-
-            </ul>
-        </div>
+    <main class = "main">
+       
     </main>
     <footer>
 
