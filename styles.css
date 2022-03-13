@@ -3,8 +3,6 @@
     background-color: black;
 }
 
-
-
 .laboratoryBody {
     margin: 0px;
     background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOY0UoFdmfpNtw9esKt6zMVIUskAyXGU9zJg&usqp=CAU");
@@ -13,6 +11,14 @@
 .laboratoryMain {
     display: flex;
     justify-content: space-around;
+}
+
+.loadingDiv {
+    display: flex;
+    justify-content: space-around;
+}
+.loadingIMG {
+    width: 400px;
 }
 .navigation {
     list-style: none;
