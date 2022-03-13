@@ -1,6 +1,18 @@
-body {
+.pokedexBody {
     margin: 0px;
     background-color: black;
+}
+
+
+
+.laboratoryBody {
+    margin: 0px;
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOY0UoFdmfpNtw9esKt6zMVIUskAyXGU9zJg&usqp=CAU");
+}
+
+.laboratoryMain {
+    display: flex;
+    justify-content: space-around;
 }
 .navigation {
     list-style: none;
@@ -153,4 +165,43 @@ button {
 button:hover {
     background-color: blue;
     color: yellow;
+}
+
+.toDoList {
+    list-style: none;
+}
+
+.todoDiv {
+    border: 2px solid red;
+    margin-top: 100px;
+    padding: 20px;
+}
+
+.laboratoryTitle {
+    display: flex;
+    justify-content: center;
+}
+
+/* Aqui empieza el minujuego */
+.square{
+	width: 200px;
+	height: 200px;
+	border: 1px solid black;
+}
+.grid{
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	align-content: center;
+	width: 618px;
+	height: 618px;
+}
+.mole{
+	background-image: url("https://static.wikia.nocookie.net/espokemon/images/b/b6/Diglett_de_Alola.png/revision/latest/top-crop/width/360/height/450?cb=20161114201323");
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+.mole>img {
+    width: 150px;
 }
