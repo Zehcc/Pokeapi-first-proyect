@@ -56,10 +56,7 @@ const pokedexMain = () => {
         <input class ="filterInput" id="filterInput" type="text" placeholder="Escribe aquí el nombre de un pokemon para saber mas sobre el">
         <button  onclick="getFiltered()">Filtrar</button>
         <button  onclick="resetFilter()">Limpiar filtro</button>
-    </div>
-    <div>
-        <ul class="filteredPokemons"></ul>
-    </div>` 
+    </div>`
 }
 
 const labolatoryMain = () =>{
@@ -134,20 +131,19 @@ const getAllMapped = async () => {
 
 const getFiltered = async () => {
     const pokemons = await getAllPokemons();
-    const inputFilter = document.querySelector('#filterInput')
+    const inputFilter = document.querySelector('#filterInput');
     const filteredPokemons = pokemons.filter(pokemon => (pokemon.name.toUpperCase() == inputFilter.value.toUpperCase()));
     filteredPokemons.forEach(pokemon => {
-        /* let filteredList = document.querySelector(".filteredPokemons")
-        if (filteredList != null){
-            const filtered = document.createElement('ul');
-            filtered.className = ".filteredPokemons";
-            filteredList = document.querySelector(".filteredPokemons")
-        } */
-        const filteredList = document.querySelector(".filteredPokemons")
-        const pokemonCard = document.createElement('li');
-        pokemonCard.className = "filteredCard"
-        pokemonCard.innerHTML = `<div class="filteredCardImg" ><img src="${pokemon.sprites.other.dream_world.front_default}" alt="${pokemon.name}"></div><div class ="filteredUl"><ul class="filteredCardText${pokemon.name}"></ul></div>`
-        filteredList.appendChild(pokemonCard);
+        let filteredList = document.querySelector(".filteredPokemons");
+        if (filteredList == null){
+            const filteredPokemons = document.createElement('ul');
+            filteredPokemons.className = "filteredPokemons";
+            const main = document.querySelector('.pokedexMain');
+            main.appendChild(filteredPokemons);
+            filteredList = document.querySelector(".filteredPokemons");
+        }
+        if (document.querySelector(`.filteredCardText${pokemon.name}`) == null){
+        filteredList.innerHTML += `<li class="filteredCard"><div class="filteredCardImg" ><img src="${pokemon.sprites.other.dream_world.front_default}" alt="${pokemon.name}"></div><div class ="filteredUl"><ul class="filteredCardText${pokemon.name}"></ul></div></li>`
         const filteredText = document.querySelector(`.filteredCardText${pokemon.name}`);
         const mappedStats = pokemon.stats.map(stat =>{
             return {
@@ -159,7 +155,8 @@ const getFiltered = async () => {
             filteredText.innerHTML += `<li>${stat.statName.toUpperCase()} =>   ${stat.statValue}</li>`
            }
         const pokemonsList = document.querySelector(".pokemons");
-        removeAllChilds(pokemonsList);       
+        removeAllChilds(pokemonsList);
+        }      
     });
     inputFilter.value= '';
 }
