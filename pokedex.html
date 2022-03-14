@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./pokedexStyles.css">
+    <script src="./appPokedex.js"></script>
+    <title>Pokeapi</title>
+</head>
+<body>
+    <header class="header">
+        <nav>
+            <ul class="navigationPokedex">
+                <a href="pokedex.html">Pokedex</a>
+                <a href="laboratory.html">Laboratorio</a>
+            </ul>
+        </nav>
+    </header>
+    <main class="pokedexMain">
+        <div class="pokeapiDiv">
+            <img class ="pokeapiIMG" src="https://avatars.githubusercontent.com/u/64151210?v=4" alt="letras pokemon">
+        </div>
+        <div class="filterContent">
+            <input class ="filterInput" id="filterInput" type="text" placeholder="Escribe aquí el nombre de un pokemon para saber mas sobre el">
+            <button  onclick="getFiltered()">Filtrar</button>
+            <button  onclick="resetFilter()">Limpiar filtro</button>
+        </div>
+    </main>
+</body>
+</html>

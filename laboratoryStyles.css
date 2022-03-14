@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital@1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital@1&family=Permanent+Marker&display=swap');
+Body {
+    margin: 0px;
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOY0UoFdmfpNtw9esKt6zMVIUskAyXGU9zJg&usqp=CAU");
+    font-family: 'Libre Baskerville', serif;
+}
+
+ * {cursor: url(https://cur.cursors-4u.net/games/gam-13/gam1282.cur), auto !important;}
+Main {
+    display: flex;
+    justify-content: space-around;
+}
+
+.navigationLaboratory {
+    list-style: none;
+    margin: 0%;
+    padding: 0%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-top: 50px;
+}
+
+a {
+    
+    margin-right: 10px;
+    border-radius: 20px;
+    color: black;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px; 
+    background-color: #3498db;
+    background-image: url("https://www.transparenttextures.com/patterns/arches.png");
+}
+a:cur
+
+.toDoList {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+   
+}
+
+.todoDiv {
+    width: 300px;
+    margin-top: 100px;
+    padding: 20px;
+    background-color: #3498db;
+    background-image: url("https://www.transparenttextures.com/patterns/arches.png");
+}
+
+.laboratoryTitle {
+    display: flex;
+    justify-content: center;
+    font-family: 'Permanent Marker', cursive;
+}
+
+.toDoListItem {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.toDoListText {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Permanent Marker', cursive;
+    max-width: 100%;
+    flex-wrap: wrap;
+}
+
+.toDoEntry {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 20px;
+}
+
+.toDoInput {
+    border: none;
+    border-bottom: solid 2px orange;
+    background-color: #3498db;
+    outline: 0;
+    background: none;
+    font-family: 'Permanent Marker', cursive;
+}
+
+.laboratoryButton {
+    background: none;
+    border: none;
+    color: orange;
+    font-size: 20px;
+}
+
+.listItemButton {
+    background: none;
+    border: none;
+    color: orange;
+    font-size: 20px;
+}
