@@ -39,6 +39,7 @@ const getAllMapped = async () => {
     })
     document.querySelector('.loadingDiv').remove();
     const allPokemonsDiv = document.createElement('div');
+    allPokemonsDiv.className = 'allPokemonsDiv';
     const allPokemonsList = document.createElement('ul');
     allPokemonsList.className = 'pokemons';
     mappedPokemons.forEach(pokemon => {
@@ -88,6 +89,36 @@ const getFiltered = async () => {
     inputFilter.value= '';
 }
 
+const getFilteredByType = async (param) => {
+    const pokemons = await getAllPokemons();
+    if(document.querySelector('.allPokemonsDiv') !== null){
+        document.querySelector('.allPokemonsDiv').remove()
+    }
+    if((document.querySelector('.fylteredTypeDiv') == null)){
+        const createTypeDiv = document.createElement('div');
+        createTypeDiv.className = 'fylteredTypeDiv';
+        const main = document.querySelector('main');
+        main.appendChild(createTypeDiv);
+    }
+    removeAllChilds((document.querySelector('.fylteredTypeDiv')));
+    const typeTitle = document.createElement('h3');
+    typeTitle.className = `title${param}`
+    typeTitle.innerHTML = `Pokemons tipo: ${param}`;
+    document.querySelector('.fylteredTypeDiv').appendChild(typeTitle)
+    const filteredTypeList = document.createElement('ul');
+    filteredTypeList.className = 'pokemons';
+    for (const pokemon of pokemons) {
+        for (const type of pokemon.types) {
+            if (type.type.name == param) {      
+                filteredTypeList.innerHTML += `<li class="pokemonCard${type.type.name}"><img src="${pokemon.sprites.other.dream_world.front_default}" alt="${pokemon.name}"><h2 class="pokemonName">${pokemon.name.toUpperCase()}</h2></li>`
+                const fylteredTypeDiv = document.querySelector('.fylteredTypeDiv')
+                fylteredTypeDiv.appendChild(filteredTypeList);
+                console.log((document.querySelector('.fylteredTypeDiv')))
+            }
+        }
+    }
+}
+
 const removeAllChilds = (parent) => {
     while (parent.firstChild) {
         parent.removeChild(parent.firstChild);
@@ -98,3 +129,4 @@ const resetFilter = () => {
     document.querySelector(".filteredPokemons").remove();
     getAllMapped();
 }
+
