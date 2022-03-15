@@ -56,6 +56,9 @@ const getFiltered = async () => {
     if (pokemonsList !== null) {
         pokemonsList.remove();
     }
+    if (document.querySelector(".filteredTypeDiv") !== null) {
+        document.querySelector(".filteredTypeDiv").remove();
+    }
     let filteredList = document.querySelector(".filteredPokemons");
     if (filteredList !== null) {
         removeAllChilds(filteredList);
@@ -94,26 +97,25 @@ const getFilteredByType = async (param) => {
     if(document.querySelector('.allPokemonsDiv') !== null){
         document.querySelector('.allPokemonsDiv').remove()
     }
-    if((document.querySelector('.fylteredTypeDiv') == null)){
+    if((document.querySelector('.filteredTypeDiv') == null)){
         const createTypeDiv = document.createElement('div');
-        createTypeDiv.className = 'fylteredTypeDiv';
+        createTypeDiv.className = 'filteredTypeDiv';
         const main = document.querySelector('main');
         main.appendChild(createTypeDiv);
     }
-    removeAllChilds((document.querySelector('.fylteredTypeDiv')));
+    removeAllChilds((document.querySelector('.filteredTypeDiv')));
     const typeTitle = document.createElement('h3');
     typeTitle.className = `title${param}`
     typeTitle.innerHTML = `Pokemons tipo: ${param}`;
-    document.querySelector('.fylteredTypeDiv').appendChild(typeTitle)
+    document.querySelector('.filteredTypeDiv').appendChild(typeTitle)
     const filteredTypeList = document.createElement('ul');
     filteredTypeList.className = 'pokemons';
     for (const pokemon of pokemons) {
         for (const type of pokemon.types) {
             if (type.type.name == param) {      
                 filteredTypeList.innerHTML += `<li class="pokemonCard${type.type.name}"><img src="${pokemon.sprites.other.dream_world.front_default}" alt="${pokemon.name}"><h2 class="pokemonName">${pokemon.name.toUpperCase()}</h2></li>`
-                const fylteredTypeDiv = document.querySelector('.fylteredTypeDiv')
-                fylteredTypeDiv.appendChild(filteredTypeList);
-                console.log((document.querySelector('.fylteredTypeDiv')))
+                const filteredTypeDiv = document.querySelector('.filteredTypeDiv')
+                filteredTypeDiv.appendChild(filteredTypeList);
             }
         }
     }
@@ -126,7 +128,12 @@ const removeAllChilds = (parent) => {
 }
 
 const resetFilter = () => {
-    document.querySelector(".filteredPokemons").remove();
+    if (document.querySelector(".filteredPokemons") !== null) {
+        document.querySelector(".filteredPokemons").remove();
+    }
+    if (document.querySelector(".filteredTypeDiv") !== null) {
+        document.querySelector(".filteredTypeDiv").remove();
+    }
     getAllMapped();
 }
 
