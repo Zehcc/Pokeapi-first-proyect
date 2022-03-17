@@ -3,7 +3,7 @@ window.onload = () => {
 }
 
 const init = async () => {
-   getAllMapped();
+   paintAllPokemons();
 }
 
 const getPokemon = async (id) => {
@@ -21,7 +21,7 @@ const getAllPokemons = async () =>{
     return allPokemons;
 }
 
-const getAllMapped = async () => {
+const paintAllPokemons = async () => {
     const loadingDiv = document.createElement('div');
     loadingDiv.className = 'loadingDiv';
     loadingDiv.innerHTML = '<img class="loadingIMG" src="https://i.gifer.com/origin/6d/6d067d7dd323a4cbc792f280968cd641.gif" alt="loading">';
@@ -65,6 +65,7 @@ const getFiltered = async () => {
     }
     if (filteredPokemons.length == 0) {
         alert(`¡${inputFilter.value.toUpperCase()} no esta en la lista!`)
+        paintAllPokemons();
     } else {
         filteredPokemons.forEach(pokemon => {
             if (filteredList == null){
@@ -134,6 +135,6 @@ const resetFilter = () => {
     if (document.querySelector(".filteredTypeDiv") !== null) {
         document.querySelector(".filteredTypeDiv").remove();
     }
-    getAllMapped();
+    paintAllPokemons();
 }
 
