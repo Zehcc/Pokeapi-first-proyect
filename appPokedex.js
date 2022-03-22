@@ -1,9 +1,18 @@
+let allPokemons = [];
+
 window.onload = () => {
     init();
 }
 
 const init = async () => {
-   paintAllPokemons();
+    const loadingDiv = document.createElement('div');
+    loadingDiv.className = 'loadingDiv';
+    loadingDiv.innerHTML = '<img class="loadingIMG" src="https://i.gifer.com/origin/6d/6d067d7dd323a4cbc792f280968cd641.gif" alt="loading">';
+    const main = document.querySelector('main');
+    main.appendChild(loadingDiv);
+    await getAllPokemons();
+    document.querySelector('.loadingDiv').remove();
+    paintAllPokemons();
 }
 
 const getPokemon = async (id) => {
@@ -13,22 +22,14 @@ const getPokemon = async (id) => {
 }
 
 const getAllPokemons = async () =>{
-    const allPokemons = [];
     for (i=1; i<=151; i++) {
     const pokemon =  await getPokemon(i);
     allPokemons.push(pokemon)
     }
-    return allPokemons;
 }
 
-const paintAllPokemons = async () => {
-    const loadingDiv = document.createElement('div');
-    loadingDiv.className = 'loadingDiv';
-    loadingDiv.innerHTML = '<img class="loadingIMG" src="https://i.gifer.com/origin/6d/6d067d7dd323a4cbc792f280968cd641.gif" alt="loading">';
-    const main = document.querySelector('main');
-    main.appendChild(loadingDiv);
-    const pokemons = await getAllPokemons ();
-    const mappedPokemons = pokemons.map (pokemon => {
+const paintAllPokemons = () => {
+    const mappedPokemons = allPokemons.map (pokemon => {
         return {
             name: pokemon.name.toUpperCase(),
             image: pokemon.sprites.other.dream_world.front_default,
@@ -37,7 +38,6 @@ const paintAllPokemons = async () => {
             number: pokemon.order
         }
     })
-    document.querySelector('.loadingDiv').remove();
     const allPokemonsDiv = document.createElement('div');
     allPokemonsDiv.className = 'allPokemonsDiv';
     const allPokemonsList = document.createElement('ul');
@@ -45,13 +45,12 @@ const paintAllPokemons = async () => {
     mappedPokemons.forEach(pokemon => {
     allPokemonsList.innerHTML += `<li class="pokemonCard"><img src="${pokemon.image}" alt="${pokemon.name}"><h2 class="pokemonName">${pokemon.name}</h2><p class="mappedCardP">Altura: ${pokemon.height}m</p><p class="mappedCardP">Peso: ${pokemon.weight}kg</p><p class="mappedCardP"># ${pokemon.number}</p></li>`
     });
-    main.appendChild(allPokemonsDiv).appendChild(allPokemonsList);
+    document.querySelector('main').appendChild(allPokemonsDiv).appendChild(allPokemonsList);
 }
 
-const getFiltered = async () => {
-    const pokemons = await getAllPokemons();
+const getFiltered =  () => {
     const inputFilter = document.querySelector('#filterInput');
-    const filteredPokemons = pokemons.filter(pokemon => ( pokemon.name.toUpperCase().includes(inputFilter.value.toUpperCase())));
+    const filteredPokemons = allPokemons.filter(pokemon => ( pokemon.name.toUpperCase().includes(inputFilter.value.toUpperCase())));
     const pokemonsList = document.querySelector(".pokemons");
     if (pokemonsList !== null) {
         pokemonsList.remove();
@@ -93,8 +92,7 @@ const getFiltered = async () => {
     inputFilter.value= '';
 }
 
-const getFilteredByType = async (param) => {
-    const pokemons = await getAllPokemons();
+const getFilteredByType =  (param) => {
     if(document.querySelector('.allPokemonsDiv') !== null){
         document.querySelector('.allPokemonsDiv').remove()
     }
@@ -111,7 +109,7 @@ const getFilteredByType = async (param) => {
     document.querySelector('.filteredTypeDiv').appendChild(typeTitle)
     const filteredTypeList = document.createElement('ul');
     filteredTypeList.className = 'pokemons';
-    for (const pokemon of pokemons) {
+    for (const pokemon of allPokemons) {
         for (const type of pokemon.types) {
             if (type.type.name == param) {      
                 filteredTypeList.innerHTML += `<li class="pokemonCard${type.type.name}"><img src="${pokemon.sprites.other.dream_world.front_default}" alt="${pokemon.name}"><h2 class="pokemonName">${pokemon.name.toUpperCase()}</h2></li>`
