@@ -70,7 +70,6 @@ a:hover {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 2px solid 	yellow;
     margin: 5px;
     width: 250px;
     height: 350px;
@@ -459,12 +458,11 @@ a:hover {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 2px solid blue;
     margin: 5px;
     width: 350px;
     height: 450px;
     background-color:black;
-    color: yellow;
+    color: blue;
 }
 
 .filteredCard {
