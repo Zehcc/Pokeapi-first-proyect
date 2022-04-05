@@ -96,6 +96,9 @@ const getFilteredByType =  (param) => {
     if(document.querySelector('.allPokemonsDiv') !== null){
         document.querySelector('.allPokemonsDiv').remove()
     }
+    if(document.querySelector(".filteredPokemons")!== null) {
+        document.querySelector('.filteredPokemons').remove()
+    }
     if((document.querySelector('.filteredTypeDiv') == null)){
         const createTypeDiv = document.createElement('div');
         createTypeDiv.className = 'filteredTypeDiv';
